@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ポップアップ</title>
+  <link rel="stylesheet" type="text/css" href="popup.css">
+</head>
+<body>
+<div class="content">
+  <label for="pageTitle" class="column">タイトル</label>
+  <div class="grid">
+    <div class="text">
+      <input type="text" id="pageTitle" class="column" readonly>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <label for="pageURL" class="column">URL</label>
+  <div class="grid">
+    <div class="text">
+      <input type="url" id="pageURL" class="column" readonly>
+    </div>
+  </div>
+  <input type="button" class="switch_tab1" value="click">
+</div>
+<script src="popup.js" defer></script>
+</body>
+</html>
