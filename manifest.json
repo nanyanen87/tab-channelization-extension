@@ -8,7 +8,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://example.com/"],
+      "matches": ["https://www.youtube.com/*"],
       "js": ["content-script.js"]
     }
   ],
@@ -21,21 +21,28 @@
         "default": "Alt+Shift+1",
         "mac": "Command+Shift+1"
       },
-      "description": "channel 1"
+      "description": "channel1"
     },
-    "channel2": {
+    "next-ch": {
       "suggested_key": {
         "default": "Alt+Shift+2",
         "mac": "Command+Shift+2"
       },
-      "description": "channel 2"
+      "description": "next"
     },
-    "channel3": {
+    "previous-ch": {
       "suggested_key": {
         "default": "Alt+Shift+3",
         "mac": "Command+Shift+3"
       },
-      "description": "channel 3"
+      "description": "previous"
+    },
+    "volume-up": {
+      "suggested_key": {
+        "default": "Alt+PageUp",
+        "mac": "Command+PageUp"
+      },
+      "description": "volume up"
     }
   },
   "permissions": ["tabs", "scripting", "nativeMessaging"],

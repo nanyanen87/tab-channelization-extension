@@ -6,12 +6,12 @@ const titles = document.querySelectorAll('.swtich_tabs')
 
 chrome.tabs.query({ 'currentWindow': true, 'lastFocusedWindow': true }, tabs => {
 
-  document.querySelector(".switch_tab1").addEventListener("click",()=>{
-    showCheck()
-  }, false);
-  tabs.forEach((tab, index) => {
-    console.log(tab.url)
-  })
+  // document.querySelector(".switch_tab1").addEventListener("click",()=>{
+  //   showCheck()
+  // }, false);
+  // tabs.forEach((tab, index) => {
+  //   console.log(tab.url)
+  // })
   // title.value = tabs[0].title;
   // url.value = tabs[0].url;
 });
