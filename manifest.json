@@ -16,24 +16,17 @@
     "service_worker": "background.js"
   },
   "commands": {
-    "channel1": {
+    "next-ch": {
       "suggested_key": {
         "default": "Alt+Shift+1",
         "mac": "Command+Shift+1"
-      },
-      "description": "channel1"
-    },
-    "next-ch": {
-      "suggested_key": {
-        "default": "Alt+Shift+2",
-        "mac": "Command+Shift+2"
       },
       "description": "next"
     },
     "previous-ch": {
       "suggested_key": {
-        "default": "Alt+Shift+3",
-        "mac": "Command+Shift+3"
+        "default": "Alt+Shift+2",
+        "mac": "Command+Shift+2"
       },
       "description": "previous"
     },
@@ -43,6 +36,13 @@
         "mac": "Command+PageUp"
       },
       "description": "volume up"
+    },
+    "volume-down": {
+      "suggested_key": {
+        "default": "Alt+PageDown",
+        "mac": "Command+PageDown"
+      },
+      "description": "volume down"
     }
   },
   "permissions": ["tabs", "scripting", "nativeMessaging"],

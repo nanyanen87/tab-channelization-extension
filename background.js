@@ -11,24 +11,23 @@ chrome.commands.onCommand.addListener(function(command) {
     let previousIndex = (activeIndex - 1 + tabs.length) % tabs.length;
 
     // 次のタブをアクティブにする
-    if (command === "channel1") {
-      chrome.tabs.update(tabs[0].id, {active: true});
-    } else if (command === "next-ch") {
-      chrome.tabs.update(tabs[nextIndex].id, {active: true});
-      muteAllExcept(tabs[nextIndex].id);
-    } else if (command === "previous-ch") {
-      chrome.tabs.update(tabs[previousIndex].id, {active: true});
-      muteAllExcept(tabs[previousIndex].id)
-    } else if (command === "volume-up") {
-      volumeUp(tabs[activeIndex].id);
-    } else if (command === "volume-down") {
-      // volumeDown(tabs[activeIndex].id);
+    switch (command) {
+      case 'next-ch':
+        muteAllExcept(tabs[nextIndex].id);
+        chrome.tabs.update(tabs[nextIndex].id, {active: true});
+        break;
+      case 'previous-ch':
+        muteAllExcept(tabs[nextIndex].id);
+        chrome.tabs.update(tabs[previousIndex].id, {active: true});
+        break;
+      case 'volume-up':
+        volumeUp(tabs[activeIndex].id);
+        break;
+      case 'volume-down':
+        volumeDown(tabs[activeIndex].id);
+        break;
     }
   });
-});
-// content-script.jsからのメッセージを受信
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-  console.log(message.video);  // "Hello, world!"
 });
 
 function muteTab(tabId) {
@@ -59,9 +58,10 @@ function activateTab(tabId) {
 
 // content-script.jsからvideoタグを取得して音量を変更する
 function volumeUp(tabId) {
+  chrome.tabs.sendMessage(tabId, {volume: 'up'});
   // 特定のタブに対してコンテンツスクリプトを実行
-  chrome.scripting.executeScript({
-    target: {tabId: tabId},
-    files: ['volume-up.js'],
-  })
+}
+function volumeDown(tabId) {
+  chrome.tabs.sendMessage(tabId, {volume: 'down'});
+  // 特定のタブに対してコンテンツスクリプトを実行
 }
