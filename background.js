@@ -1,4 +1,12 @@
 // shortcutが被ってたら使えないっぽい
+// キーイベントを監視する
+// chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+//   if (message.type === 'keydown') {
+//     const keyCode = message.key;
+//     console.log('入力されたキー番号: ', keyCode);
+//   }
+// });
+
 chrome.commands.onCommand.addListener(function(command) {
   console.log(`Command: ${command}`);
   // アクティブなウィンドウのすべてのタブを取得
@@ -14,17 +22,19 @@ chrome.commands.onCommand.addListener(function(command) {
     switch (command) {
       case 'next-ch':
         muteAllExcept(tabs[nextIndex].id);
-        chrome.tabs.update(tabs[nextIndex].id, {active: true});
+        activateTab(tabs[nextIndex].id);
         break;
       case 'previous-ch':
         muteAllExcept(tabs[nextIndex].id);
-        chrome.tabs.update(tabs[previousIndex].id, {active: true});
+        activateTab(tabs[nextIndex].id);
         break;
       case 'volume-up':
-        volumeUp(tabs[activeIndex].id);
+        chrome.tabs.sendMessage(tabs[activeIndex].id, {volume: 'up'});
+        // volumeUp(tabs[activeIndex].id);
         break;
       case 'volume-down':
-        volumeDown(tabs[activeIndex].id);
+        chrome.tabs.sendMessage(tabs[activeIndex].id, {volume: 'down'});
+        // volumeDown(tabs[activeIndex].id);
         break;
     }
   });

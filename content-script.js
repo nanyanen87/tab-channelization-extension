@@ -1,6 +1,14 @@
 // 特定のページ対しておこわなわれるjs
 // 主にユーザーインターフェースの変更や特定の要素の監視、ページ内の特定の操作の自動化などに使用される
 
+// キーイベントを監視する
+// document.addEventListener('keydown', function(event) {
+//   const key = event.code;
+//   console.log(key)
+//   // キー番号をbackground.jsに送信する
+//   chrome.runtime.sendMessage({ type: 'keydown', key: key });
+// });
+
 let videos = document.getElementsByTagName('video');
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.volume) {
